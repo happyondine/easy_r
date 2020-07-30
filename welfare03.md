@@ -93,11 +93,7 @@ age_income <- welfare %>%
   filter(!is.na(income)) %>% 
   group_by(age) %>% 
   summarise(mean_income = mean(income))
-```
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 head(age_income)
 ```
 
