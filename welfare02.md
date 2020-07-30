@@ -28,7 +28,13 @@ table(welfare$sex)
 
 ``` r
 table(welfare$sex)
+```
 
+    ## 
+    ##    1    2 
+    ## 7578 9086
+
+``` r
 #이상치 결측 처리
 welfare$sex <- ifelse(welfare$sex == 9, NA, welfare$sex)
 
@@ -36,6 +42,10 @@ welfare$sex <- ifelse(welfare$sex == 9, NA, welfare$sex)
 #결측치확인
 table(is.na(welfare$sex))
 ```
+
+    ## 
+    ## FALSE 
+    ## 16664
 
 ``` r
 #성별 항목 이름 부여
@@ -51,7 +61,7 @@ table(welfare$sex)
 qplot(welfare$sex)
 ```
 
-![](welfare02_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](welfare02_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 ### 월급 변수 검토 및 전처리
 
@@ -78,7 +88,7 @@ summary(welfare$income)
 qplot(welfare$income)
 ```
 
-![](welfare02_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](welfare02_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 income 은 numeric타입이고 0\~2400만 원 사이의 값을 지니며 122\~316만 원 사이에 가장 많이 분포한다.
 평균은 241.6만원, 중앙값은 평균보다 작은 192.5만 원으로 전반적으로 낮은 값 쪽으로 치우쳐 있다.
@@ -92,7 +102,7 @@ qplot은 최댓값까지 표현하도록 기본값이 설정되어 있다. 그�
 qplot(welfare$income) +xlim(0,1000)
 ```
 
-![](welfare02_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](welfare02_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 #### 2\. 전처리
 
@@ -147,4 +157,4 @@ sex_income
 ggplot(data= sex_income, aes(x=sex, y= mean_income)) + geom_col()
 ```
 
-![](welfare02_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](welfare02_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
