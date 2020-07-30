@@ -18,17 +18,9 @@ numeric이고 1,2로 구성된다. 1은 7578, 2는 9086명이 존재 한다.
 
 ``` r
 class(welfare$sex)
-```
 
-    ## [1] "numeric"
-
-``` r
 table(welfare$sex)
 ```
-
-    ## 
-    ##    1    2 
-    ## 7578 9086
 
 #### 2\. 전처리
 
@@ -36,13 +28,7 @@ table(welfare$sex)
 
 ``` r
 table(welfare$sex)
-```
 
-    ## 
-    ##    1    2 
-    ## 7578 9086
-
-``` r
 #이상치 결측 처리
 welfare$sex <- ifelse(welfare$sex == 9, NA, welfare$sex)
 
@@ -50,10 +36,6 @@ welfare$sex <- ifelse(welfare$sex == 9, NA, welfare$sex)
 #결측치확인
 table(is.na(welfare$sex))
 ```
-
-    ## 
-    ## FALSE 
-    ## 16664
 
 ``` r
 #성별 항목 이름 부여
@@ -69,7 +51,7 @@ table(welfare$sex)
 qplot(welfare$sex)
 ```
 
-![](welfare02_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](welfare02_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ### 월급 변수 검토 및 전처리
 
@@ -96,11 +78,7 @@ summary(welfare$income)
 qplot(welfare$income)
 ```
 
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
-    ## Warning: Removed 12030 rows containing non-finite values (stat_bin).
-
-![](welfare02_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](welfare02_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 income 은 numeric타입이고 0\~2400만 원 사이의 값을 지니며 122\~316만 원 사이에 가장 많이 분포한다.
 평균은 241.6만원, 중앙값은 평균보다 작은 192.5만 원으로 전반적으로 낮은 값 쪽으로 치우쳐 있다.
@@ -108,25 +86,17 @@ income 은 numeric타입이고 0\~2400만 원 사이의 값을 지니며 122\~31
 qplot은 최댓값까지 표현하도록 기본값이 설정되어 있다. 그래프를 보면 x축이 2500까지 있어서 대다수를 차지하는
 0\~1000사이의 데이터가 잘 표현되지 않는다. xlim을 이용해 0\~1000까지 설정한다.
 
+0\~250사이에 가장 많은 사람이 분포한다.
+
 ``` r
 qplot(welfare$income) +xlim(0,1000)
 ```
 
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
-    ## Warning: Removed 12051 rows containing non-finite values (stat_bin).
-
-    ## Warning: Removed 2 rows containing missing values (geom_bar).
-
-![](welfare02_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
-
-``` r
-#0~250사이에 가장 많은 사람이 분포한다.
-```
+![](welfare02_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 #### 2\. 전처리
 
-월급은 1\~1998이고 무응답은 9999이다.
+월급은 1\~9998이고 무응답은 9999이다.
 
 ``` r
 summary(welfare$income)
@@ -159,11 +129,7 @@ sex_income <- welfare %>%
   filter(!is.na(income)) %>% 
   group_by(sex) %>% 
   summarise(mean_income = mean(income))
-```
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 sex_income
 ```
 
@@ -181,4 +147,4 @@ sex_income
 ggplot(data= sex_income, aes(x=sex, y= mean_income)) + geom_col()
 ```
 
-![](welfare02_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](welfare02_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
