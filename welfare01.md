@@ -1,4 +1,4 @@
-제목
+한국복지패널데이터 분석
 ================
 오유리
 July 30, 2020
@@ -50,6 +50,9 @@ welfare <- raw_welfare
 head(welfare)
 tail(welfare)
 View(welfare)
+dim(welfare)
+str(welfare)
+sumnmary(welfare)
 ```
 
 #### 5\. 변수명 바꾸기
