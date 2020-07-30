@@ -61,7 +61,7 @@ sumnmary(welfare)
 
 ``` r
 welfare <- rename(welfare, 
-                  sex= h10_g3,
+                  sex = h10_g3,
                   birth = h10_g4,
                   marriage = h10_g10,
                   religion = h10_g11,
@@ -81,13 +81,15 @@ welfare <- rename(welfare,
 class(welfare$sex)
 ```
 
-    ## [1] "NULL"
+    ## [1] "numeric"
 
 ``` r
 table(welfare$sex)
 ```
 
-    ## < table of extent 0 >
+    ## 
+    ##    1    2 
+    ## 7578 9086
 
   - 2단계. 변수 간 관계 분석 전처리가 완료되면 본격적으로 변수 간 관계를 파악하는 분석을 한다.
 
