@@ -29,8 +29,6 @@ summary(welfare$birth)
 qplot(welfare$birth)
 ```
 
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
 ![](welfare03_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 #### 2\. 전처리
@@ -83,8 +81,6 @@ summary(welfare$age)
 ``` r
 qplot(welfare$age)
 ```
-
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
 ![](welfare03_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
