@@ -20,11 +20,7 @@ sex_income <- welfare %>%
   filter(!is.na(income)) %>% 
   group_by(ageg,sex) %>% 
   summarise(mean_income = mean(income))
-```
 
-    ## `summarise()` regrouping output by 'ageg' (override with `.groups` argument)
-
-``` r
 sex_income
 ```
 
@@ -61,11 +57,7 @@ sex_age <- welfare %>%
   filter(!is.na(income)) %>% 
   group_by(age,sex) %>% 
   summarise(mean_income = mean(income))
-```
 
-    ## `summarise()` regrouping output by 'age' (override with `.groups` argument)
-
-``` r
 head(sex_age)
 
 ggplot(data=sex_age, aes(x=age, y=mean_income, col=sex)) + geom_line()
