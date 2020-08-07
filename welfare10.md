@@ -64,6 +64,15 @@ med_income <- med_income %>%
 med_income
 ```
 
+    ## # A tibble: 5 x 3
+    ##   med_cond mean_income health          
+    ##   <fct>          <dbl> <chr>           
+    ## 1 1               286. Very Healthy    
+    ## 2 2               253. Healthy         
+    ## 3 3               184. Normal          
+    ## 4 4               131. Not Healthy     
+    ## 5 5               288. Very Not Healthy
+
 #### 2\. 소득이 많은 순으로 그래프를 그린다
 
 알기쉽게 바꾼 건강상태 데이터와 월급 데이터를 가지고 그래프를 그린다. 비교하기 쉽도록 월급이 높은순으로 순서를 정렬했다. 근소한
@@ -94,6 +103,15 @@ med_mincome <- med_mincome %>%
   mutate(health2 = ifelse(med_cond == "1", "Very Healthy", ifelse(med_cond == "2",  "Healthy", ifelse(med_cond == "3", "Normal", ifelse(med_cond == "4", "Not Healthy", ifelse(med_cond == "5", "Very Not Healthy", NA))))))
 med_mincome
 ```
+
+    ## # A tibble: 5 x 3
+    ##   med_cond mean_income health2         
+    ##   <fct>          <dbl> <chr>           
+    ## 1 1               248. Very Healthy    
+    ## 2 2               200  Healthy         
+    ## 3 3               138. Normal          
+    ## 4 4                99  Not Healthy     
+    ## 5 5               243  Very Not Healthy
 
 #### 2\. 같은 방식으로 그래프를 그린다.
 
