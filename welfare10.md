@@ -82,16 +82,14 @@ ggplot(med_income,aes(reorder(health,-mean_income),mean_income)) + geom_point() 
 
 #### 1\. 같은 방식이지만 median을 사용해 월급표를 만든다.
 
+median으로 평균을 구해보면 소수의 아주 크거나 작은 월급으로 인해 평균의 차이가 생겼는지를 알아볼 수 있다.
+
 ``` r
 med_mincome <- welfare %>% 
   filter(!is.na(income) & !is.na(med_cond)) %>% 
   group_by(med_cond) %>% 
   summarise(mean_income = median(income))
-```
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 med_mincome <- med_mincome %>% 
   mutate(health2 = ifelse(med_cond == "1", "Very Healthy", ifelse(med_cond == "2",  "Healthy", ifelse(med_cond == "3", "Normal", ifelse(med_cond == "4", "Not Healthy", ifelse(med_cond == "5", "Very Not Healthy", NA))))))
 med_mincome
@@ -105,8 +103,8 @@ ggplot(med_mincome,aes(reorder(health2,-mean_income),mean_income)) + geom_point(
 
 ![](welfare10_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-이번에는 가장 건강한 사람들이 가장 월급이 많다고 나오고, 그 다음이 가장 건강하지 않다고 나온다. 월급 평균이 줄어들었음을 통해
-상대적으로 적은 숫자의 높은 월급의 사람들이 건강상태가 가장 안좋았던 그룹에 속해있어 이런결과가 생겼다고 볼 수 있다. 나머지
-건강상태는 똑같이 월급과 비례한다.
+이번에는 가장 건강한 사람들이 가장 월급이 많다고 나오고, 그 다음이 가장 건강하지 않다고 나오고 나머지 건강상태는 똑같이 월급과
+비례한다. 가장 건강하지 않다고 나온 데이터의 월급 평균이 줄어들었음을 통해 상대적으로 적은 숫자의 높은 월급의 사람들이
+건강상태가 가장 안좋았던 그룹에 속해있어 이런결과가 생겼다고 볼 수 있다.
 
 ### 결론: 소득과 건강은 대체로 비례하지만 월급이 많이 높은 경우에는 오히려 가장 건강이 않좋은 사람들이 많다고 추측된다.
