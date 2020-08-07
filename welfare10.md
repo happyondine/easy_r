@@ -54,7 +54,7 @@ med_income
 
 #### 1\. 1\~5변수로 된 건강상태를 알아보기 쉽게 바꾼다.
 
-1이 가장 건강하고, 5가 가장 건강하지 않다는것을 의미하므로, 해당 데이터를 알기 쉽게 바꾼 healthc라는 새로운 행을
+1이 가장 건강하고, 5가 가장 건강하지 않다는것을 의미하므로, 해당 데이터를 알기 쉽게 바꾼 health 라는 새로운 행을
 추가한다.
 
 ``` r
@@ -70,7 +70,7 @@ med_income
 차이를 보이는 데이터가 있어 막대 그래프보다는 점 그래프를 그렸다.
 
 ``` r
-ggplot(med_income,aes(reorder(health,-mean_income),mean_income))+geom_point()  + labs(x="Health Condition",y="Income") 
+ggplot(med_income,aes(reorder(health,-mean_income),mean_income)) + geom_point()  + labs(x="Health Condition",y="Income") 
 ```
 
 ![](welfare10_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
