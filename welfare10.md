@@ -66,7 +66,7 @@ med_income
 
 #### 2\. 소득이 많은 순으로 그래프를 그린다
 
-알기쉽게 바꾼 건강상태 데이터와 월급 데이터를 가지고 그래프를 그린다. 비교하기 쉽도록 월급이 높은순으로 순서를 바꿨다. 근소한
+알기쉽게 바꾼 건강상태 데이터와 월급 데이터를 가지고 그래프를 그린다. 비교하기 쉽도록 월급이 높은순으로 순서를 정렬했다. 근소한
 차이를 보이는 데이터가 있어 막대 그래프보다는 점 그래프를 그렸다.
 
 ``` r
@@ -75,4 +75,38 @@ ggplot(med_income,aes(reorder(health,-mean_income),mean_income)) + geom_point() 
 
 ![](welfare10_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-#### 결론: 가장 건강이 안좋은 사람들의 소득 평균이 가장 높다. 하지만 가장 건강한 사람들은 근소한 차이로 평균 소득이 그 다음으로 높다. 소득과 건강상태는 비례하지만, 적절한 선의 소득에 만족하는 사람들이 건강을 잘 챙길 수 있다고 해석될 수도 있겠다.
+가장 건강이 안좋은 사람들의 소득 평균이 가장 높다. 하지만 가장 건강한 사람들은 근소한 차이로 평균 소득이 그 다음으로 높다.
+소득과 건강상태는 비례하지만, 적절한 선의 소득에 만족하는 사람들이 건강을 잘 챙길 수 있다고 해석될 수도 있겠다.
+
+### median을 사용해 인구밀도를 고려한 월급 평균을 사용해본다.
+
+#### 1\. 같은 방식이지만 median을 사용해 월급표를 만든다.
+
+``` r
+med_mincome <- welfare %>% 
+  filter(!is.na(income) & !is.na(med_cond)) %>% 
+  group_by(med_cond) %>% 
+  summarise(mean_income = median(income))
+```
+
+    ## `summarise()` ungrouping output (override with `.groups` argument)
+
+``` r
+med_mincome <- med_mincome %>% 
+  mutate(health2 = ifelse(med_cond == "1", "Very Healthy", ifelse(med_cond == "2",  "Healthy", ifelse(med_cond == "3", "Normal", ifelse(med_cond == "4", "Not Healthy", ifelse(med_cond == "5", "Very Not Healthy", NA))))))
+med_mincome
+```
+
+#### 2\. 같은 방식으로 그래프를 그린다.
+
+``` r
+ggplot(med_mincome,aes(reorder(health2,-mean_income),mean_income)) + geom_point()  + labs(x="Health Condition",y="Income") 
+```
+
+![](welfare10_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+이번에는 가장 건강한 사람들이 가장 월급이 많다고 나오고, 그 다음이 가장 건강하지 않다고 나온다. 월급 평균이 줄어들었음을 통해
+상대적으로 적은 숫자의 높은 월급의 사람들이 건강상태가 가장 안좋았던 그룹에 속해있어 이런결과가 생겼다고 볼 수 있다. 나머지
+건강상태는 똑같이 월급과 비례한다.
+
+### 결론: 소득과 건강은 대체로 비례하지만 월급이 많이 높은 경우에는 오히려 가장 건강이 않좋은 사람들이 많다고 추측된다.
