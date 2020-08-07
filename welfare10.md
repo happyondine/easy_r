@@ -66,11 +66,11 @@ med_income
 
 #### 2\. 소득이 많은 순으로 그래프를 그린다
 
-알기쉽게 바꾼 건강상태 데이터와 월급 데이터를 가지고 그래프를 그린다. 근소한 차이를 보이는 데이터가 있어 막대 그래프보다는 점
-그래프를 그렸다.
+알기쉽게 바꾼 건강상태 데이터와 월급 데이터를 가지고 그래프를 그린다. 비교하기 쉽도록 월급이 높은순으로 순서를 바꿨다. 근소한
+차이를 보이는 데이터가 있어 막대 그래프보다는 점 그래프를 그렸다.
 
 ``` r
-ggplot(med_income,aes(reorder(health,-mean_income),mean_income))+geom_point()  + labs(x="Health Condition",y="Income", title= "Relationship between Health and Income") 
+ggplot(med_income,aes(reorder(health,-mean_income),mean_income))+geom_point()  + labs(x="Health Condition",y="Income") 
 ```
 
 ![](welfare10_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
