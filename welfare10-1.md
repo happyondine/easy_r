@@ -76,8 +76,6 @@ med_income
 
 알기쉽게 바꾼 건강상태 데이터와 월급 데이터를 가지고 그래프를 그린다.
 
-?geom\_col
-
 ``` r
 ggplot(med_income,aes(reorder(health,med_cond),mean_income)) + geom_col(color="green",alpha=0.7,fill="yellowgreen")+ labs(x="Health Condition",y="Income") 
 ```
