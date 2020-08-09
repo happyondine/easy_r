@@ -76,8 +76,10 @@ med_income
 
 알기쉽게 바꾼 건강상태 데이터와 월급 데이터를 가지고 그래프를 그린다.
 
+?geom\_col
+
 ``` r
-ggplot(med_income,aes(reorder(health,med_cond),mean_income)) + geom_col()  + labs(x="Health Condition",y="Income") 
+ggplot(med_income,aes(reorder(health,med_cond),mean_income)) + geom_col(color="green",alpha=0.7,fill="yellowgreen")+ labs(x="Health Condition",y="Income") 
 ```
 
 ![](welfare10-1_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
@@ -114,7 +116,7 @@ med_mincome
 #### 2\. 같은 방식으로 그래프를 그린다.
 
 ``` r
-ggplot(med_mincome,aes(reorder(health2,med_cond),mean_income)) + geom_col()  + labs(x="Health Condition",y="Income") 
+ggplot(med_mincome,aes(reorder(health2,med_cond),mean_income)) + geom_col(color="green",alpha=0.7,fill="yellowgreen") + labs(x="Health Condition",y="Income") + guides(fill="none") 
 ```
 
 ![](welfare10-1_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
